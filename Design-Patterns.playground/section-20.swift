@@ -1,38 +1,42 @@
-/**
- *  Component
- */
-protocol Shape {
-    func draw(fillColor:String)
+protocol Currency {
+    func symbol() -> String
+    func code() -> String
 }
 
-/**
- * Leafs
- */
-class Square : Shape {
-    func draw(fillColor: String) {
-        print("Drawing a Square with color \(fillColor)")
-    }
-}
-
-class Circle : Shape {
-    func draw(fillColor: String) {
-        print("Drawing a circle with color \(fillColor)")
-    }
-}
-
-/**
-* Composite
-*/
-class Whiteboard : Shape {
-    lazy var shapes:[Shape] = []
-    
-    init(_ shapes:[Shape]) {
-        self.shapes = shapes
+class Euro : Currency {
+    func symbol() -> String {
+        return "€"
     }
     
-    func draw(fillColor:String) {
-        for shape in self.shapes {
-            shape.draw(fillColor)
+    func code() -> String {
+        return "EUR"
+    }
+}
+
+class UnitedStatedDolar : Currency {
+    func symbol() -> String {
+        return "$"
+    }
+    
+    func code() -> String {
+        return "USD"
+    }
+}
+
+enum Country {
+    case UnitedStates, Spain, France, UK
+}
+
+class CurrencyFactory {
+    class func currencyForCountry(country:Country) -> Currency? {
+        switch country {
+        case .Spain, .France :
+            return Euro()
+        case .UnitedStates :
+            return UnitedStatedDolar()
+        default:
+            return nil
         }
+        
     }
 }
