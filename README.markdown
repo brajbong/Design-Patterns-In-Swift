@@ -217,7 +217,6 @@ CurrencyFactory.currencyForCountry(.UK)?.code() ?? noCurrencyCode
 >**Source:** [wikipedia.org](http://en.wikipedia.org/wiki/Structural_pattern)
 
 ##Composite
-
 ```swift
 /**
  *  Component
@@ -245,7 +244,7 @@ class Circle : Shape {
 * Composite
 */
 class Whiteboard : Shape {
-    lazy var shapes = [Shape]()
+    lazy var shapes:[Shape] = []
     
     init(_ shapes:[Shape]) {
         self.shapes = shapes
@@ -260,7 +259,7 @@ class Whiteboard : Shape {
 ```
 **Usage:**
 ```swift
-var whiteboard = Whiteboard([Circle(), Square()])
+let whiteboard = Whiteboard([Circle(), Square()])
 whiteboard.draw("Red")
 ```
 
